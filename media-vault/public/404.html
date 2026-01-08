@@ -4,26 +4,17 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    // SPA GitHub Pages Redirect
-    // Redirects all 404s to index.html with proper query params
-    sessionStorage.redirect = location.pathname;
+    // Simple redirect for GitHub Pages SPA
+    const path = window.location.pathname;
+    const repo = path.split('/')[1] || '';
+    const base = repo ? `/${repo}/` : '/';
     
-    // Determine the base path
-    const pathSegments = location.pathname.split('/');
-    const repoName = pathSegments[1] || ''; // Get repo name from URL
-    
-    // Redirect to index.html with the path as a query parameter
-    const basePath = repoName ? `/${repoName}/` : '/';
-    const redirectPath = location.pathname.replace(new RegExp(`^${basePath}`), '');
-    
-    location.replace(`${basePath}?redirect=${encodeURIComponent(redirectPath)}`);
+    // Store current path and redirect to index
+    sessionStorage.setItem('redirect', path);
+    window.location.href = base;
   </script>
 </head>
 <body>
-  <noscript>
-    <h1>Redirecting...</h1>
-    <p>If you are not redirected, <a href="./">click here</a>.</p>
-  </noscript>
-  
+  <noscript>Please enable JavaScript or <a href="./">click here</a></noscript>
 </body>
 </html>
