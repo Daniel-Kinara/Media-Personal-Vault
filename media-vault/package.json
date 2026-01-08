@@ -2,7 +2,7 @@
   "name": "media-vault",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://daniel-kinara.github.io/media-personal-vault",
+  "homepage": ".",
   "type": "module",
   "scripts": {
     "dev": "vite",
