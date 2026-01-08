@@ -9,5 +9,24 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Handle the redirect from 404.html
+      (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+        
+        if (redirect) {
+          // Clean up URL
+          window.history.replaceState(null, null, redirect);
+        }
+        
+        // Check sessionStorage for redirect
+        const sessionRedirect = sessionStorage.redirect;
+        if (sessionRedirect) {
+          delete sessionStorage.redirect;
+          window.history.replaceState(null, null, sessionRedirect);
+        }
+      })();
+    </script>
   </body>
 </html>
